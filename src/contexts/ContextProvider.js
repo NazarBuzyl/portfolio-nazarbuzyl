@@ -4,11 +4,17 @@ const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [currentTheme, setCurrentTheme] = React.useState("light");
+  const [activeSection, setActiveSection] = React.useState("home");
+  const [timeOfLastClick, setTimeOfLastClick] = React.useState(0);
 
-  const setMode = (e) => {
-    setCurrentTheme(e.target.value);
-
-    localStorage.setItem("themeMode", e.target.value);
+  const toggleTheme = () => {
+    if (currentTheme === "light") {
+      setCurrentTheme("dark");
+      window.localStorage.setItem("themeMode", "dark");
+    } else {
+      setCurrentTheme("light");
+      window.localStorage.setItem("themeMode", "light");
+    }
   };
 
   return (
@@ -16,7 +22,11 @@ export const ContextProvider = ({ children }) => {
       value={{
         currentTheme,
         setCurrentTheme,
-        setMode,
+        toggleTheme,
+        activeSection,
+        setActiveSection,
+        timeOfLastClick,
+        setTimeOfLastClick,
       }}
     >
       {children}
