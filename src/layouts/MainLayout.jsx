@@ -1,5 +1,10 @@
 import { Outlet } from "react-router-dom";
-import { Header, Footer, ThemeSwitch } from "../components/index";
+import {
+  Header,
+  Footer,
+  ThemeSwitch,
+  LanguageSwitch,
+} from "../components/index";
 
 function MainLayout() {
   return (
@@ -11,6 +16,7 @@ function MainLayout() {
             <Outlet />
           </div>
           {/* Toaster from react-hot-toast */}
+          <LanguageSwitch />
           <ThemeSwitch />
           <Footer />
         </div>

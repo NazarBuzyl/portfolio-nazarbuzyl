@@ -10,7 +10,7 @@ const Projects = () => {
 
   return (
     <section ref={ref} id="projects" className="scroll-mt-28 mb-28">
-      <SectionHeader>My projects</SectionHeader>
+      <SectionHeader name="My projects" />
       <div>
         {projectsData.map((project, index) => (
           <Project key={index} {...project} />

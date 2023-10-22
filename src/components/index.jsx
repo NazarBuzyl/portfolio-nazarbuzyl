@@ -6,6 +6,7 @@ export { default as SectionDivider } from "./SectionDivider";
 export { default as ThemeSwitch } from "./ThemeSwitch";
 export { default as SubmitBtn } from "./SubmitBtn";
 export { default as ToastComponent } from "./ToastComponent";
+export { default as LanguageSwitch } from "./LanguageSwitch";
 
 export { default as Intro } from "./Intro";
 export { default as About } from "./About";

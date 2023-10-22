@@ -6,6 +6,7 @@ export const ContextProvider = ({ children }) => {
   const [currentTheme, setCurrentTheme] = React.useState("light");
   const [activeSection, setActiveSection] = React.useState("home");
   const [timeOfLastClick, setTimeOfLastClick] = React.useState(0);
+  const [languageMode, setLanguageMode] = React.useState("en");
 
   const toggleTheme = () => {
     if (currentTheme === "light") {
@@ -27,6 +28,8 @@ export const ContextProvider = ({ children }) => {
         setActiveSection,
         timeOfLastClick,
         setTimeOfLastClick,
+        languageMode,
+        setLanguageMode,
       }}
     >
       {children}

@@ -37,6 +37,8 @@ export const sectionsData = [
   },
 ];
 
+export const supportedLanguages = ["en", "de", "ru", "ua"];
+
 export const introData = {
   name: "Nazar",
   position: "front-end developer",

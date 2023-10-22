@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import {
   VerticalTimeline,
@@ -19,7 +17,7 @@ const Experience = () => {
 
   return (
     <section id="experience" ref={ref} className="scroll-mt-28 mb-28 sm:mb-40">
-      <SectionHeader>My experience</SectionHeader>
+      <SectionHeader name="My experience" />
       <VerticalTimeline lineColor="">
         {experiencesData.map((item, index) => (
           <React.Fragment key={index}>

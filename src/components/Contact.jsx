@@ -54,7 +54,7 @@ const Contact = () => {
         once: true,
       }}
     >
-      <SectionHeader>Contact me</SectionHeader>
+      <SectionHeader name="Contact me" />
 
       <p className="text-gray-700 -mt-6 dark:text-white/80">
         Please contact me directly at{" "}
