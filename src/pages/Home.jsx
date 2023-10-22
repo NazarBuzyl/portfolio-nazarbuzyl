@@ -1,5 +1,13 @@
 import React from "react";
-import { Intro, About, Skills, SectionDivider } from "../components/index";
+import {
+  Intro,
+  About,
+  Skills,
+  SectionDivider,
+  Projects,
+  Experience,
+  Contact,
+} from "../components/index";
 
 const Home = () => {
   return (
@@ -7,10 +15,10 @@ const Home = () => {
       <Intro />
       <SectionDivider />
       <About />
-      {/* <Projects /> */}
+      <Projects />
       <Skills />
-      {/* <Experience /> */}
-      {/* <Contact /> */}
+      <Experience />
+      <Contact />
     </div>
   );
 };

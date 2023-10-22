@@ -6,6 +6,7 @@ import { BsArrowRight, BsLinkedin } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
 import { FaGithubSquare } from "react-icons/fa";
 
+import { introData } from "../data/dummy";
 import { useSectionInView } from "../lib/hooks";
 import { useStateContext } from "../contexts/ContextProvider";
 
@@ -30,8 +31,8 @@ const Intro = () => {
             }}
           >
             <LazyLoadImage
-              // src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=368&h=368&q=100"
-              alt="Nazar portrait"
+              src={introData.imageUrl}
+              alt={`${introData.name} portrait`}
               width="192"
               height="192"
               className="h-24 w-24 rounded-full object-cover border-[0.35rem] border-white shadow-xl"
@@ -59,10 +60,11 @@ const Intro = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className="font-bold">Hello, I'm Nazar.</span> I'm a{" "}
-        <span className="font-bold">front-end developer</span> with{" "}
-        <span className="font-bold">2 years</span> of experience. I enjoy
-        building <span className="italic">sites & apps</span>. My focus is{" "}
+        <span className="font-bold">Hello, I'm {introData.name}.</span> I'm a{" "}
+        <span className="font-bold">{introData.position}</span> with{" "}
+        <span className="font-bold">{introData.experienceYears} years</span> of
+        experience. I enjoy building{" "}
+        <span className="italic">sites & apps</span>. My focus is{" "}
         <span className="underline">React</span>.
       </motion.h1>
 
@@ -94,24 +96,26 @@ const Intro = () => {
           Download CV
           <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
         </a>
-
-        {/* <a
-          className="bg-white p-4 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://linkedin.com"
-          rel="noreferrer"
-          target="_blank"
-        >
-          <BsLinkedin />
-        </a> */}
-
-        <a
-          className="bg-white p-4 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
-          href="https://github.com/NazarBuzyl"
-          rel="noreferrer"
-          target="_blank"
-        >
-          <FaGithubSquare />
-        </a>
+        {introData.linkedin && (
+          <a
+            className="bg-white p-4 text-gray-700 hover:text-gray-950 flex items-center gap-2 rounded-full focus:scale-[1.15] hover:scale-[1.15] active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+            href={introData.linkedin}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <BsLinkedin />
+          </a>
+        )}
+        {introData.github && (
+          <a
+            className="bg-white p-4 text-gray-700 flex items-center gap-2 text-[1.35rem] rounded-full focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10 dark:text-white/60"
+            href={introData.github}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <FaGithubSquare />
+          </a>
+        )}
       </motion.div>
     </section>
   );
