@@ -9,9 +9,81 @@ import { introData } from "../data/dummy";
 import { useSectionInView } from "../lib/hooks";
 import { useStateContext } from "../contexts/ContextProvider";
 
+const contactBtn = {
+  en: "Contact Me",
+  de: "Kontaktieren Sie mich",
+  ru: "Свяжитесь со мной",
+  ua: "Зв'яжіться зі мною",
+};
+
+const downloadCVBtn = {
+  en: "Download CV",
+  de: "Lebenslauf herunterladen",
+  ru: "Скачать резюме",
+  ua: "Завантажити Резюме",
+};
+
 const Intro = () => {
   const { ref } = useSectionInView("Home", 0.5);
-  const { setActiveSection, setTimeOfLastClick } = useStateContext();
+  const { setActiveSection, setTimeOfLastClick, languageMode } =
+    useStateContext();
+
+  const mainIntroInfo = {
+    en: (
+      <>
+        <span className="font-bold">
+          Hello, I'm {introData.name[languageMode]}.
+        </span>{" "}
+        I'm a{" "}
+        <span className="font-bold">{introData.position[languageMode]}</span>{" "}
+        with{" "}
+        <span className="font-bold">{introData.experienceYears} years</span> of
+        experience. I enjoy building{" "}
+        <span className="italic">sites & apps</span>. My focus is on{" "}
+        <span className="underline">React</span>.
+      </>
+    ),
+    de: (
+      <>
+        <span className="font-bold">
+          Hallo, ich bin {introData.name[languageMode]}.
+        </span>{" "}
+        Ich bin ein{" "}
+        <span className="font-bold">{introData.position[languageMode]}</span>{" "}
+        mit{" "}
+        <span className="font-bold">{introData.experienceYears} Jahren</span>{" "}
+        Erfahrung. Ich baue gerne{" "}
+        <span className="italic">Websites und Apps</span>. Mein Fokus liegt auf{" "}
+        <span className="underline">React</span>.
+      </>
+    ),
+    ru: (
+      <>
+        <span className="font-bold">
+          Привет, я {introData.name[languageMode]}.
+        </span>{" "}
+        Я -{" "}
+        <span className="font-bold">{introData.position[languageMode]}</span> с{" "}
+        <span className="font-bold">{introData.experienceYears} годами</span>{" "}
+        опыта. Мне нравится создавать{" "}
+        <span className="italic">сайты и приложения</span>. Я сфокусированный на{" "}
+        <span className="underline">React</span>.
+      </>
+    ),
+    ua: (
+      <>
+        <span className="font-bold">
+          Привіт, я {introData.name[languageMode]}.
+        </span>{" "}
+        Я -{" "}
+        <span className="font-bold">{introData.position[languageMode]}</span> з{" "}
+        <span className="font-bold">{introData.experienceYears} роками</span>{" "}
+        досвіду. Мені подобається створювати{" "}
+        <span className="italic">сайти та додатки</span>. Я сфокусований на{" "}
+        <span className="underline">React</span>.
+      </>
+    ),
+  };
 
   return (
     <section
@@ -59,12 +131,7 @@ const Intro = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className="font-bold">Hello, I'm {introData.name}.</span> I'm a{" "}
-        <span className="font-bold">{introData.position}</span> with{" "}
-        <span className="font-bold">{introData.experienceYears} years</span> of
-        experience. I enjoy building{" "}
-        <span className="italic">sites & apps</span>. My focus is on{" "}
-        <span className="underline">React</span>.
+        {mainIntroInfo[languageMode]}
       </motion.h1>
 
       <motion.div
@@ -83,7 +150,7 @@ const Intro = () => {
             setTimeOfLastClick(Date.now());
           }}
         >
-          Contact me here
+          {contactBtn[languageMode]}
           <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />
         </a>
 
@@ -92,7 +159,7 @@ const Intro = () => {
           href="/CV.pdf"
           download
         >
-          Download CV
+          {downloadCVBtn[languageMode]}
           <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
         </a>
         {introData.linkedin && (

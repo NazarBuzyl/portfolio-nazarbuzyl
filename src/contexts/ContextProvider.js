@@ -18,6 +18,23 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
+  const [successToast, setSuccessToast] = React.useState(false);
+  const [errorToast, setErrorToast] = React.useState(false);
+
+  const showSuccessToast = () => {
+    setSuccessToast(true);
+    setTimeout(() => {
+      showSuccessToast(false);
+    }, 3000);
+  };
+
+  const showErrorToast = () => {
+    setErrorToast(true);
+    setTimeout(() => {
+      setErrorToast(false);
+    }, 3000);
+  };
+
   return (
     <StateContext.Provider
       value={{
@@ -30,6 +47,12 @@ export const ContextProvider = ({ children }) => {
         setTimeOfLastClick,
         languageMode,
         setLanguageMode,
+        successToast,
+        setSuccessToast,
+        errorToast,
+        setErrorToast,
+        showSuccessToast,
+        showErrorToast,
       }}
     >
       {children}

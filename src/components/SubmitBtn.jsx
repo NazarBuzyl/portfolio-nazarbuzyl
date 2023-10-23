@@ -2,7 +2,7 @@ import React from "react";
 
 import { FaPaperPlane } from "react-icons/fa";
 
-const SubmitBtn = ({ pending }) => {
+const SubmitBtn = ({ name, pending }) => {
   return (
     <button
       type="submit"
@@ -13,7 +13,7 @@ const SubmitBtn = ({ pending }) => {
         <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
       ) : (
         <>
-          Submit{" "}
+          {name}{" "}
           <FaPaperPlane className="text-xs opacity-70 transition-all group-hover:translate-x-1 group-hover:-translate-y-1" />{" "}
         </>
       )}

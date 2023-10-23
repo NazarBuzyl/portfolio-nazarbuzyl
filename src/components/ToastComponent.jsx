@@ -1,42 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
+import { useStateContext } from "../contexts/ContextProvider";
 
 function ToastComponent() {
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const showSuccessToast = (message) => {
-    setSuccessMessage(message);
-    setTimeout(() => {
-      setSuccessMessage("");
-    }, 3000);
-  };
-
-  const showErrorToast = (message) => {
-    setErrorMessage(message);
-    setTimeout(() => {
-      setErrorMessage("");
-    }, 3000);
-  };
+  const { successToast, errorToast } = useStateContext();
 
   return (
-    <div>
-      <button onClick={() => showSuccessToast("Success!")}>
-        Show Success Toast
-      </button>
-      <button onClick={() => showErrorToast("Error!")}>Show Error Toast</button>
-
-      {successMessage && (
-        <div className="toast success">
+    <div className="fixed bottom-[1rem] left-[1rem] flex flex-col gap-1">
+      {successToast && (
+        <div className="rounded-full p-2 bg-white bg-opacity-80 toast success flex items-center gap-1 text-green-900 text-2xl">
           <FaCheckCircle />
-          {successMessage}
+          Success
         </div>
       )}
 
-      {errorMessage && (
-        <div className="toast error">
+      {errorToast && (
+        <div className="rounded-full p-2 bg-white bg-opacity-80 toast error flex items-center gap-1 text-red-900 text-2xl">
           <FaExclamationCircle />
-          {errorMessage}
+          Error
         </div>
       )}
     </div>

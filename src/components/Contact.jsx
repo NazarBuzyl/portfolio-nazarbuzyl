@@ -6,13 +6,79 @@ import { SectionHeader, SubmitBtn } from "./index";
 import { sendEmail } from "../lib/sendEmail";
 import { useStateContext } from "../contexts/ContextProvider";
 
-const Contact = () => {
+const nameBtn = {
+  en: "Submit",
+  de: "Senden",
+  ru: "Отправить",
+  ua: "Відправити",
+};
+
+const placeholderData = {
+  en: {
+    email: "Your email",
+    message: "Your message",
+  },
+  de: {
+    email: "Ihre E-Mail",
+    message: "Ihre Nachricht",
+  },
+  ru: {
+    email: "Ваша почта",
+    message: "Ваше сообщение",
+  },
+  ua: {
+    email: "Ваша пошта",
+    message: "Ваше повідомлення",
+  },
+};
+
+const contactData = {
+  en: (
+    <p className="text-gray-700 -mt-6 dark:text-white/80">
+      Please contact me directly at{" "}
+      <a className="underline" href="mailto:nazarbuzyl@gmail.com">
+        nazarbuzyl@gmail.com
+      </a>{" "}
+      or through this form.
+    </p>
+  ),
+  de: (
+    <p className="text-gray-700 -mt-6 dark:text-white/80">
+      Bitte kontaktieren Sie mich direkt unter{" "}
+      <a className="underline" href="mailto:nazarbuzyl@gmail.com">
+        nazarbuzyl@gmail.com
+      </a>{" "}
+      oder über dieses Formular.
+    </p>
+  ),
+  ru: (
+    <p className="text-gray-700 -mt-6 dark:text-white/80">
+      Пожалуйста, свяжитесь со мной напрямую по адресу{" "}
+      <a className="underline" href="mailto:nazarbuzyl@gmail.com">
+        nazarbuzyl@gmail.com
+      </a>{" "}
+      или через эту форму.
+    </p>
+  ),
+  ua: (
+    <p className="text-gray-700 -mt-6 dark:text-white/80">
+      Будь ласка, зв'яжіться зі мною безпосередньо за адресою{" "}
+      <a className="underline" href="mailto:nazarbuzyl@gmail.com">
+        nazarbuzyl@gmail.com
+      </a>{" "}
+      або через цю форму.
+    </p>
+  ),
+};
+// ----------------------------------------------------------------
+const Contact = ({ title }) => {
   const { ref } = useStateContext("Contact");
   const [formData, setFormData] = React.useState({
     senderEmail: "",
     message: "",
   });
   const [pending, setPending] = React.useState(false);
+  const { languageMode, showErrorToast, showSuccessToast } = useStateContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +87,9 @@ const Contact = () => {
     try {
       const response = await sendEmail(formData);
       if (response.error) {
+        showErrorToast();
       } else {
+        showSuccessToast();
         setFormData({ senderEmail: "", message: "" });
       }
     } catch (error) {
@@ -54,16 +122,8 @@ const Contact = () => {
         once: true,
       }}
     >
-      <SectionHeader name="Contact me" />
-
-      <p className="text-gray-700 -mt-6 dark:text-white/80">
-        Please contact me directly at{" "}
-        <a className="underline" href="mailto:nazarbuzyl@gmail.com">
-          nazarbuzyl@gmail.com
-        </a>{" "}
-        or through this form.
-      </p>
-
+      <SectionHeader name={title} />
+      {contactData[languageMode]}
       <form
         className="mt-10 flex flex-col dark:text-black"
         onSubmit={handleSubmit}
@@ -74,20 +134,20 @@ const Contact = () => {
           type="email"
           required
           maxLength={500}
-          placeholder="Your email"
+          placeholder={placeholderData[languageMode].email}
           value={formData.senderEmail}
           onChange={handleInputChange}
         />
         <textarea
           className="h-52 my-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
           name="message"
-          placeholder="Your message"
+          placeholder={placeholderData[languageMode].message}
           required
           maxLength={5000}
           value={formData.message}
           onChange={handleInputChange}
         />
-        <SubmitBtn pending={pending} />
+        <SubmitBtn name={nameBtn[languageMode]} pending={pending} />
       </form>
     </motion.section>
   );

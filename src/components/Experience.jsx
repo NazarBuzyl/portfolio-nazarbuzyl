@@ -11,15 +11,15 @@ import { useStateContext } from "../contexts/ContextProvider";
 
 import { SectionHeader } from "./index";
 
-const Experience = () => {
+const Experience = ({ title }) => {
   const { ref } = useSectionInView("Experience");
-  const { currentTheme } = useStateContext();
+  const { currentTheme, languageMode } = useStateContext();
 
   return (
     <section id="experience" ref={ref} className="scroll-mt-28 mb-28 sm:mb-40">
-      <SectionHeader name="My experience" />
+      <SectionHeader name={title} />
       <VerticalTimeline lineColor="">
-        {experiencesData.map((item, index) => (
+        {experiencesData[languageMode].map((item, index) => (
           <React.Fragment key={index}>
             <VerticalTimelineElement
               contentStyle={{

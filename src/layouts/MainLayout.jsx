@@ -4,6 +4,7 @@ import {
   Footer,
   ThemeSwitch,
   LanguageSwitch,
+  ToastComponent,
 } from "../components/index";
 
 function MainLayout() {
@@ -18,6 +19,7 @@ function MainLayout() {
           {/* Toaster from react-hot-toast */}
           <LanguageSwitch />
           <ThemeSwitch />
+          <ToastComponent />
           <Footer />
         </div>
       </div>

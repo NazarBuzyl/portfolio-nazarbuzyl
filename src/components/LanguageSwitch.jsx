@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 import { useStateContext } from "../contexts/ContextProvider";
 import { supportedLanguages } from "../data/dummy";
@@ -30,7 +31,8 @@ function LanguageSwitch() {
               initial={{ y: -100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
             >
-              <div
+              <Link
+                to={`/${language}`}
                 className={`flex items-center justify-center py-3 px-3 uppercase
                 hover:text-gray-950 transition cursor-pointer
                 dark:text-gray-500 dark:hover:text-gray-300${
@@ -56,7 +58,7 @@ function LanguageSwitch() {
                     }}
                   ></motion.span>
                 )}
-              </div>
+              </Link>
             </motion.li>
           ))}
         </ul>
