@@ -21,27 +21,24 @@ export const sendEmail = async (formData) => {
     };
   }
 
-  let data;
   try {
-    data = await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: "nazarbuzyl@gmail.com",
-      subject: "Message from contact form",
-      reply_to: senderEmail,
-      html: React.createElement(ContactFormEmail, {
+    const data = await resend.emails.send({
+      from: "<onboarding@resend.dev>",
+      to: ["nazarbuzyl@gmail.com"],
+      subject: "Message from contact form | Portfolio Nazar Buzyl",
+      // reply_to: senderEmail,
+      react: ContactFormEmail({
         message: message,
         senderEmail: senderEmail,
       }),
     });
+
+    return { data };
   } catch (error) {
     return {
       error: getErrorMessage(error),
     };
   }
-
-  return {
-    data,
-  };
 };
 
 const validateString = (value, maxLength) => {

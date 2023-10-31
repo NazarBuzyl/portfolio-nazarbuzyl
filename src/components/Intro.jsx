@@ -8,6 +8,8 @@ import { FaGithubSquare } from "react-icons/fa";
 import { introData } from "../data/dummy";
 import { useSectionInView } from "../lib/hooks";
 import { useStateContext } from "../contexts/ContextProvider";
+import Lebenslauf from "../data/Lebenslauf.pdf";
+import CV from "../data/CV.pdf";
 
 const contactBtn = {
   en: "Contact Me",
@@ -156,7 +158,7 @@ const Intro = () => {
 
         <a
           className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition cursor-pointer borderBlack dark:bg-white/10"
-          href="/CV.pdf"
+          href={languageMode === "de" ? Lebenslauf : CV}
           download
         >
           {downloadCVBtn[languageMode]}

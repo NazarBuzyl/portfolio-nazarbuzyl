@@ -39,7 +39,7 @@ const contactData = {
       <a className="underline" href="mailto:nazarbuzyl@gmail.com">
         nazarbuzyl@gmail.com
       </a>{" "}
-      or through this form.
+      {/* or through this form. */}
     </p>
   ),
   de: (
@@ -48,7 +48,7 @@ const contactData = {
       <a className="underline" href="mailto:nazarbuzyl@gmail.com">
         nazarbuzyl@gmail.com
       </a>{" "}
-      oder über dieses Formular.
+      {/* oder über dieses Formular. */}
     </p>
   ),
   ru: (
@@ -57,7 +57,7 @@ const contactData = {
       <a className="underline" href="mailto:nazarbuzyl@gmail.com">
         nazarbuzyl@gmail.com
       </a>{" "}
-      или через эту форму.
+      {/* или через эту форму. */}
     </p>
   ),
   ua: (
@@ -66,7 +66,7 @@ const contactData = {
       <a className="underline" href="mailto:nazarbuzyl@gmail.com">
         nazarbuzyl@gmail.com
       </a>{" "}
-      або через цю форму.
+      {/* або через цю форму. */}
     </p>
   ),
 };
@@ -124,8 +124,8 @@ const Contact = ({ title }) => {
     >
       <SectionHeader name={title} />
       {contactData[languageMode]}
-      <form
-        className="mt-10 flex flex-col dark:text-black"
+      {/* <form
+        className="mt-10 flex flex-col dark:text-black relative"
         onSubmit={handleSubmit}
       >
         <input
@@ -137,6 +137,7 @@ const Contact = ({ title }) => {
           placeholder={placeholderData[languageMode].email}
           value={formData.senderEmail}
           onChange={handleInputChange}
+          disabled={true}
         />
         <textarea
           className="h-52 my-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
@@ -146,9 +147,13 @@ const Contact = ({ title }) => {
           maxLength={5000}
           value={formData.message}
           onChange={handleInputChange}
+          disabled={true}
         />
+        <div className="absolute z-[500] flex justify-center items-center font-semibold italic text-3xl dark:text-white w-full h-full rounded-lg rounded-b-3xl p-4 bg-red-500/80 origin-center">
+          In Developing...
+        </div>
         <SubmitBtn name={nameBtn[languageMode]} pending={pending} />
-      </form>
+      </form> */}
     </motion.section>
   );
 };

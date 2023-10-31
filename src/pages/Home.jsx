@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import {
   Intro,
@@ -10,15 +10,20 @@ import {
   Experience,
   Contact,
 } from "../components/index";
-import { sectionsTitelsData } from "../data/dummy";
+import { sectionsTitelsData, supportedLanguages } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Home = () => {
   const { language } = useParams();
   const { setLanguageMode, languageMode } = useStateContext();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
-    setLanguageMode(language ? language : "en");
+    if (supportedLanguages.includes(language)) {
+      setLanguageMode(language);
+    } else {
+      navigate("/");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
